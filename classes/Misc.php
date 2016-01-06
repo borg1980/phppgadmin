@@ -11,10 +11,6 @@
 		// Tracking string to include in forms
 		var $form;
 
-		/* Constructor */
-		function Misc() {
-		}
-
 		/**
 		 * Checks if dumps are properly set up
 		 * @param $all (optional) True to check pg_dumpall, false to just check pg_dump
@@ -1929,6 +1925,9 @@
 							if (sizeof($actions) > 0) echo "<th class=\"data\" colspan=\"", count($actions), "\">{$column['title']}</th>\n";
 							break;
 						default:
+							if (!isset($column['class']))
+								$column['class'] = '';
+
 							echo "<th class=\"data {$column['class']}\">";
 							if (isset($column['help']))
 								$this->printHelp($column['title'], $column['help']);
@@ -1959,6 +1958,8 @@
 					}
 
 					foreach ($columns as $column_id => $column) {
+						if (!isset($column['class']))
+							$column['class'] = '';
 
 						$class = $column['class'] !== '' ? " class=\"{$column['class']}\"":'';
 
