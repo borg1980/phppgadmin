@@ -91,7 +91,8 @@
 
 		if ($attrs->recordCount() > 0) {
 			while (!$attrs->EOF) {
-				$selColumns->add(new XHTML_Option($attrs->fields['attname']));
+				$xhtmlOption = new XHTML_Option($attrs->fields['attname']);
+				$selColumns->add($xhtmlOption);
 				$attrs->moveNext();
 			}
 		}
